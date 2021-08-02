@@ -7,6 +7,8 @@
 import React, {useState} from 'react';
 import * as Icon from "react-feather";
 import {Link} from "react-router-dom";
+import Cookies from "js-cookie";
+import history from '../../utils/history';
 
 import BSNavbar from "react-bootstrap/Navbar";
 import BSNav from "react-bootstrap/Nav";
@@ -16,6 +18,8 @@ function Navbar({app_user_avatar, app_session}) {
 
 	const [dropdown_language, set_dropdown_language] = useState('');
 	const [dropdown_user_profile, set_dropdown_user_profile] = useState('');
+	const [app_language, set_app_language] = useState(0);
+	
 	const handle_dropdown = (action_from) => {
 		if (action_from === 'language') {
 			if (dropdown_language === 'show') {
@@ -32,6 +36,10 @@ function Navbar({app_user_avatar, app_session}) {
 		}
 	};
 
+	const handle_active_language = (action_from) => {
+		Cookies.set('STAE_Lang', action_from);
+		history.push(history.location.pathname);
+	};
 
 	return (
 		<nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light shadow-sm rounded-0">
@@ -50,23 +58,21 @@ function Navbar({app_user_avatar, app_session}) {
 					</ul>
 					<ul className="nav navbar-nav">
 						<li className={`nav-item dropdown dropdown-language ${dropdown_language}`}>
-							<a onBlur={() => set_dropdown_language('')} className="nav-link dropdown-toggle"
-							   id="dropdown-flag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							   href="javascript:void(0);" onClick={() => handle_dropdown('language')}>
-								<i className="flag-icon flag-icon-id  border-dark"/><span
-								className="selected-language">Bahasa</span>
+							<a onBlur={() => set_dropdown_language('')} className="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={() => handle_dropdown('language')}>
+								<i className="flag-icon flag-icon-us  border-dark"/>
+								<span className="selected-language">English</span>
 							</a>
-							<div className="dropdown-menu dropdown-menu-left rounded-0" aria-labelledby="dropdown-flag">
-								<a className="dropdown-item" href="javascript:void(0);" data-language="en">
+							<div className="dropdown-menu dropdown-menu-left rounded-0">
+								<a className="dropdown-item" onClick={() => handle_active_language(0)}>
 									<i className="flag-icon flag-icon-us"/> English
 								</a>
-								<a className="dropdown-item" href="javascript:void(0);" data-language="en">
+								<a className="dropdown-item" onClick={() => handle_active_language(1)}>
 									<i className="flag-icon flag-icon-id"/> Indonesia
 								</a>
-								<a className="dropdown-item" href="javascript:void(0);" data-language="en">
+								<a className="dropdown-item" onClick={() => handle_active_language(3)}>
 									<i className="flag-icon flag-icon-tl"/> Tetun
 								</a>
-								<a className="dropdown-item" href="javascript:void(0);" data-language="en">
+								<a className="dropdown-item" onClick={() => handle_active_language(2)}>
 									<i className="flag-icon flag-icon-pt"/> Portuguese
 								</a>
 							</div>

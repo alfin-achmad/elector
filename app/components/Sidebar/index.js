@@ -13,6 +13,8 @@ import QueryString from "query-string";
 import history from "../../utils/history";
 import global_menu from "../../utils/GlobalMenu";
 import global_helper from "../../utils/GlobalHelper";
+import global_label from "../../utils/GlobalLabel";
+import Cookies from 'js-cookie';
 
 function Sidebar() {
 	const url_pathname = history.location.pathname;
@@ -51,10 +53,10 @@ function Sidebar() {
 	const check_is_active_url = (param_url) => {
 		return url_pathname === param_url ? 'active' : '';
 	};
+	const lang_id = Cookies.get('STAE_Lang');
 	const generate_menu = () => {
 		let output;
 		const key_global_menu = Object.keys(global_menu);
-
 	};
 
 	return (
@@ -81,13 +83,13 @@ function Sidebar() {
 						<li className={`nav-item ${check_is_active_url('/dashboard')}`}>
 							<Link className="d-flex align-items-center" onClick={() => HandleOnShowSubMenu('close-all','/dashboard')}>
 								<Icon.Home/>
-								<span className="menu-title text-truncate">Beranda</span>
+								<span className="menu-title text-truncate text-capitalize">{global_label.menu_dashboard[lang_id]}</span>
 							</Link>
 						</li>
 						<li className={`nav-item ` + ('master' in show_submenu ? show_submenu.master : '')}>
 							<Link className="d-flex align-items-center" onClick={() => HandleOnShowSubMenu('master')}>
 								<Icon.Framer/>
-								<span className="menu-title text-truncate" data-i18n="Invoice">Master</span>
+								<span className="menu-title text-truncate text-capitalize" data-i18n="Invoice">{global_label.menu_master[lang_id]}</span>
 							</Link>
 							<ul className="menu-content">
 								<li className={check_is_active_url('/master/district')}>
@@ -137,7 +139,7 @@ function Sidebar() {
 						<li className={`nav-item ` + ('transaction' in show_submenu ? show_submenu.transaction : '')}>
 							<Link className="d-flex align-items-center" onClick={() => HandleOnShowSubMenu('transaction')}>
 								<Icon.Database/>
-								<span className="menu-title text-truncate" data-i18n="Invoice">Transaksi</span>
+								<span className="menu-title text-truncate text-capitalize" data-i18n="Invoice">{global_label.menu_transaction[lang_id]}</span>
 							</Link>
 							<ul className="menu-content">
 								<li>
@@ -175,7 +177,7 @@ function Sidebar() {
 						<li className={`nav-item ` + ('report' in show_submenu ? show_submenu.report : '')}>
 							<Link className="d-flex align-items-center" onClick={() => HandleOnShowSubMenu('report')}>
 								<Icon.Clipboard/>
-								<span className="menu-title text-truncate" data-i18n="Invoice">Report</span>
+								<span className="menu-title text-truncate text-capitalize" data-i18n="Invoice">{global_label.menu_report[lang_id]}</span>
 							</Link>
 							<ul className="menu-content">
 								<li>

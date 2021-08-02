@@ -23,6 +23,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
 /** @IMPORT-EXTERNAL-LIBRARY **/
+import Cookies from "js-cookie";
 
 /** @IMPORT-BASE-CSS **/
 import "../../app-assets/vendors/css/vendors.min.css";
@@ -49,6 +50,10 @@ export default function App() {
 	const list_segment = explode_url.filter(Boolean);
 	const module_segment = list_segment[2];
 	const module_component_segment = list_segment[3];
+
+	if(Cookies.get('STAE_Lang') === undefined){
+		Cookies.set('STAE_Lang', app_session_profile.lang_id);
+	}
 
 	const PrivateRoute = ({component: Component, ...lists}) => {
 		if (app_session_profile.is_authenticated === false) {
@@ -91,7 +96,7 @@ export default function App() {
 				<Route exact path="/sign-in" component={SignIn}/>
 				<PrivateRoute exact path="/dashboard" component={Dashboard}/>
 				<PrivateRoute exact path="/master/district" component={District}/>
-				<Route component={NotFoundPage}/>
+				<Route path="*" component={NotFoundPage}/>
 			</Switch>
 		</>
 	);
