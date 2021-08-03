@@ -58,7 +58,7 @@ function Navbar({app_user_avatar, app_session}) {
 					</ul>
 					<ul className="nav navbar-nav">
 						<li className={`nav-item dropdown dropdown-language ${dropdown_language}`}>
-							<a onBlur={() => set_dropdown_language('')} className="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={() => handle_dropdown('language')}>
+							<a onBlur={() => set_dropdown_language('')} className="nav-link dropdown-toggle" id="dropdown-flag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={() => handle_dropdown('language')}>
 								<i className="flag-icon flag-icon-us  border-dark"/>
 								<span className="selected-language">English</span>
 							</a>
