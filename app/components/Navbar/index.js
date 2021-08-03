@@ -63,17 +63,17 @@ function Navbar({app_user_avatar, app_session}) {
 								<span className="selected-language">English</span>
 							</a>
 							<div className="dropdown-menu dropdown-menu-left rounded-0">
+								<a className="dropdown-item" onClick={() => handle_active_language(2)}>
+									<i className="flag-icon flag-icon-pt"/> Portuguese
+								</a>
+								<a className="dropdown-item" onClick={() => handle_active_language(3)}>
+									<i className="flag-icon flag-icon-tl"/> Tetun
+								</a>
 								<a className="dropdown-item" onClick={() => handle_active_language(0)}>
 									<i className="flag-icon flag-icon-us"/> English
 								</a>
 								<a className="dropdown-item" onClick={() => handle_active_language(1)}>
 									<i className="flag-icon flag-icon-id"/> Indonesia
-								</a>
-								<a className="dropdown-item" onClick={() => handle_active_language(3)}>
-									<i className="flag-icon flag-icon-tl"/> Tetun
-								</a>
-								<a className="dropdown-item" onClick={() => handle_active_language(2)}>
-									<i className="flag-icon flag-icon-pt"/> Portuguese
 								</a>
 							</div>
 						</li>
